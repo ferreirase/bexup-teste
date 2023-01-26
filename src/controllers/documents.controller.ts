@@ -29,7 +29,7 @@ export class DocumentsController {
     );
   }
 
-  @Post('/api/documents/upload')
+  @Post('/api/documents')
   @UseInterceptors(FileInterceptor('file', {}))
   @UsePipes(new FileValidationsPipe())
   async uploadFile(
