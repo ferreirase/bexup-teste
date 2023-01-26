@@ -5,7 +5,7 @@
 
     2. GET /api/documents - Listar todos os documentos recebidos
     
-    3. GET /documents/nome-do-arquivo.extensão - Acessa um arquivo específico no servidor
+    3. GET /documents/nome-do-documento.extensão - Acessa um arquivo específico no servidor
     
     
   ## Entregáveis
@@ -46,13 +46,19 @@
 - Retorno: um array de documentos ou um array vazio;
 ```
 
-
 ``` /api/documents ```
 ```
 - Verbo: POST
 - Rota para listar todos os documentos cadastrados;
 - Body: { type: multipart/form-data, name: 'file' };
 - Retorno: um objeto com as informações do novo documento criado ou um erro de validação;
+```
+
+``` /documents/nome-do-documento.extensão ```
+```
+- Verbo: GET
+- Rota acessar um documento específico;
+- Retorno: um documento específico ou um erro;
 ```
 
 
