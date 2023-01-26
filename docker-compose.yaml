@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  node-rest-api:
+    container_name: node-rest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: sh -c 'yarn install --frozen-lockfile && yarn start:dev'
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/app/
+      - /app/node_modules
