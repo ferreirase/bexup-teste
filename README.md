@@ -1,73 +1,74 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## O desafio
+  Criar uma API para a entidade de documentos, com as seguintes rotas:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+    1. POST /api/documents - Receber o upload de um novo documento/arquivo
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+    2. GET /api/documents - Listar todos os documentos recebidos
+    
+    3. GET /documents/nome-do-arquivo.extensão - Acessa um arquivo específico no servidor
+    
+    
+  ## Entregáveis
 
-## Description
+  • Receber arquivos PDF, PNG e JPG
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  • Validar arquivos de até 20MB
 
-## Installation
+  • Os arquivos recebidos podem ser armazenados em um diretório temporário da aplicação.
 
-```bash
-$ yarn install
+  Extrair e armazenar em um local temporário o máximo de informações do arquivo enviado, como
+  data de envio, tamanho do arquivo, número de páginas, etc.
+
+  • Criar um filtro de busca, uma query que recebe uma string e filtra os documentos encontrados
+  pelo nome, independente de letras maiusculas, minusculas e acentos.
+
+  • Retornar o máximo de informaçõess do arquivo, número de páginas, tamanho, extensão, nome
+  original, data do envio do upload
+
+
+## Subindo o servidor
+  1. Clone/Baixe este repositório na sua máquina;
+
+  2. Se tiver o *``` docker-compose ```* instalado, abra o terminal na raiz da pasta do projeto e rode o comando *``` docker-compose up --build ```* para subir o servidor do projeto;
+
+  2. Se não tiver o *``` docker-compose ```* instalado, abra o terminal na raiz da pasta do projeto e rode os comandos *``` yarn install ```* ou *``` npm install ```* para instalar as dependências do projeto e depois o comando *``` yarn start:dev ```*  ou *``` npm run start:dev ```* para subir o servidor;
+
+  4. Pronto, seu servidor backend está no ar e pronto pra ser acessado no endereço *``` http://localhost:3000 ```* ou na porta configurada no arquivo *``` .env ```*.
+
+
+## Rotas e Parâmetros
+
+``` /api/documents ```
+```
+- Verbo: GET
+- Rota para listar todos os documentos cadastrados;
+- Parâmetros: ?title=string (opcional, serve para busca de documento por título);
+- Retorno: um array de documentos ou um array vazio;
 ```
 
-## Running the app
 
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+``` /api/documents ```
+```
+- Verbo: POST
+- Rota para listar todos os documentos cadastrados;
+- Body: { type: multipart/form-data, name: 'file' };
+- Retorno: um objeto com as informações do novo documento criado ou um erro de validação;
 ```
 
-## Test
 
-```bash
-# unit tests
-$ yarn run test
+## Testando
+  O comando *``` yarn test ```* ou *``` npm run test ```* roda os testes configurados para a aplicação;
+  
 
-# e2e tests
-$ yarn run test:e2e
+## Tecnologias Utilizadas no Projeto
 
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+| **Backend**|
+|----------- |
+| *NodeJS*   |
+| *Express*    |
+| *TypeScript* |
+| *Jest*    |
+| *NestJS* |
+| *Eslint*     |
+| *Prettier*  |
+| *Docker*    |
